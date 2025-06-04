@@ -1,8 +1,8 @@
-###############################
+##########################################################################################
 # Auther :-Deepak Prajapati
 # Created Date :- 31/05/2025
 # Virsion :- v2
-####################################
+###########################################################################################
 
 # This script use to check antivirus is install and running in Servers
 
@@ -35,13 +35,17 @@ fi
 if $valid
 
 then
-
+        echo "##########################################################################################"
+        
         echo "Login to $ip_address. server ."
+
+        echo "###########################################################################################"
         
         read -p "Enter the username :-" user_name ### ask user name for login
 
         ssh-keyscan -H "$ip_address" >> ~/.ssh/known_hosts 2>/dev/null ########## Add the server identity to host
         
+        echo " "
         ssh "$user_name@$ip_address" 'bash -s' << 'EOF'   ### using EOF we pass the condition to server to check the antivirus service and the file path 
 
 if [ -d "/usr/lib/Seqrite" ]
@@ -63,6 +67,7 @@ else
 fi
 EOF
 
+        echo " "
 else
         echo " "
         Echo "Invalid IP Address."
